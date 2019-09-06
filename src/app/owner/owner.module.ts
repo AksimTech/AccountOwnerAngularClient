@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { OwnerListComponent } from './owner-list/owner-list.component';
 import { OwnerDetailsComponent } from './owner-details/owner-details.component';
+import { AccountListComponent } from './owner-details/account-list/account-list.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { OwnerDetailsComponent } from './owner-details/owner-details.component';
   ],
   declarations: [
     OwnerListComponent,
-    OwnerDetailsComponent
+    OwnerDetailsComponent,
+    AccountListComponent
   ]
 })
 export class OwnerModule { }
