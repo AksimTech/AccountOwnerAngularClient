@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <form [formGroup]="ownerForm" autocomplete="off" novalidate (ngSubmit)="createOwner(ownerForm.value)">
+    <div class="form-horizontal well">
+
+      <div class="form-group">
+        <label for="name" class="control-label col-md-2">Name of the owner: </label>
+        <div class="col-md-5">
+          <input type="text" formControlName="name" id="name" class="form-control">
+        </div>
+        <div class="col-md-5">
+          <em *ngIf="validateControl('name') && hasError('name', 'required')">Name is required</em>
+          <em *ngIf="validateControl('name') && hasError('name', 'maxlength')">Maximum allowed length is 60 characters.</em>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dateOfBirth" class="control-label col-md-2">Date of birth: </label>
+        <div class="col-md-5">
+          <input type="text" formControlName="dateOfBirth" id="dateOfBirth" class="form-control" appDatepicker
+                (change)="executeDatePicekr">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
