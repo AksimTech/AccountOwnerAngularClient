@@ -9,7 +9,7 @@ export class SuccessModalComponent implements OnInit {
   @Input() public modalHeaderText: string;
   @Input() public modalBodyText: string;
   @Input() public okButtonText: string;
-  @Output() public redirectOnOk = new EventEmitter();
+  @Output() public redirectOnOK = new EventEmitter();
 
   constructor() { }
 
@@ -17,7 +17,7 @@ export class SuccessModalComponent implements OnInit {
   }
 
   public emmitEvent() {
-    this.redirectOnOk.emit();
+    this.redirectOnOK.emit();
   }
 
 }

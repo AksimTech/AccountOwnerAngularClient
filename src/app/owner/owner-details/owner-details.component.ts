@@ -20,7 +20,7 @@ export class OwnerDetailsComponent implements OnInit {
     this.getOwnerDetails();
   }
 
-  getOwnerDetails(){
+  getOwnerDetails() {
     let id: string = this.activeRoute.snapshot.params['id'];
     let apiUrl: string = `api/owner/${id}/account`;
 
