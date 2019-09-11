@@ -56,7 +56,15 @@ export class OwnerUpdateComponent implements OnInit {
     return false;
   }
 
-  public executeDatePicker(event){
+  public hasError(controlName: string, errorName: string) {
+    if (this.ownerForm.controls[controlName].hasError(errorName)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  public executeDatePicker(event) {
     this.ownerForm.patchValue({'dateOfBirth': event});
   }
 
@@ -84,7 +92,7 @@ export class OwnerUpdateComponent implements OnInit {
     (error) => {
       this.errorHandler.handleError(error);
       this.errorMessage = this.errorHandler.errorMessage;
-    })
+    });
   }
 
 }
