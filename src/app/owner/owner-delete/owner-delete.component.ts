@@ -1,0 +1,55 @@
+import { Component, OnInit } from '@angular/core';
+import { Owner } from 'src/app/_interfaces/owner.model';
+import { Router, ActivatedRoute } from '@angular/router';
+import { RepositoryService } from '../../shared/services/repository.service';
+import { ErrorHandlerService } from '../../shared/services/error-handler.service'
+
+@Component({
+  selector: 'app-owner-delete',
+  templateUrl: './owner-delete.component.html',
+  styleUrls: ['./owner-delete.component.css']
+})
+export class OwnerDeleteComponent implements OnInit {
+
+  public owner: Owner;
+  public errorMessage: string = '';
+
+  constructor(private router: Router, private repository: RepositoryService, private errorHandler: ErrorHandlerService,
+    private activeRout: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.getOwnerById();
+  }
+
+  private getOwnerById() {
+    let ownerId: string = this.activeRout.snapshot.params['id'];
+    let ownerByIdUrl: string = `api/owner/${ownerId}`;
+
+    this.repository.getData(ownerByIdUrl)
+    .subscribe(res => {
+      this.owner = res as Owner;
+    },
+    (error) => {
+      this.errorHandler.handleError(error);
+      this.errorMessage = this.errorHandler.errorMessage;
+    })
+  }
+
+  public redirectToOwnerList() {
+    this.router.navigate(['/owner/list']);
+  }
+
+  public ownerDelete() {
+    let deleteUrl: string = `api/owner/${this.owner.id}`;
+
+    this.repository.delete(deleteUrl)
+    .subscribe(res => {
+      $('#successModal').modal();
+    },
+    (error) => {
+      this.errorHandler.handleError(error);
+      this.errorMessage = this.errorHandler.errorMessage;
+    });
+  }
+
+}
